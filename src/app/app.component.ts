@@ -25,13 +25,13 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const settings: alphaTab.Settings = {
       core: {
         file: 'https://www.alphatab.net/files/canon.gp',
-        fontDirectory: 'AlphatabPOC/font/'
+        fontDirectory: '/font/'
       },
       player: {
         enablePlayer: true,
         enableCursor: true,
         enableUserInteraction: true,
-        soundFont: 'AlphatabPOC/soundfont/sonivox.sf3'
+        soundFont: '/soundfont/sonivox.sf3'
       }
     } as alphaTab.Settings;
 
