@@ -1,0 +1,25 @@
+@if (isLoading()) {
+    <div class="absolute top-0 left-0 h-screen w-screen bg-white opacity-50 flex justify-center items-center text-4xl">Loading...</div>
+}
+
+<main class="flex h-screen w-screen">
+    <nav class="bg-slate-700 text-slate-300 space-y-8 p-4 flex flex-col text-xl">
+        <img src="assets/logo.png" alt="logo" class="cursor-pointer" width="128" height="156">
+
+        <label for="file" role="button" class="font-bold cursor-pointer">Ouvrir Tab</label>
+        <input type="file" name="file" id="file" [hidden]="true" (change)="loadTab($event)" />
+        
+        <p class="font-bold">Controls</p>
+        <button class="cursor-pointer" (click)="playPause()">Play / Pause</button>
+        <button class="cursor-pointer" (click)="alphaTabApi?.stop()">Stop</button>
+
+        <p class="font-bold">Tracks</p>
+        @for (track of tracks(); track track) {
+          <button class="cursor-pointer" (click)="alphaTabApi?.renderTracks([track])">{{ track.name }}</button>
+        }
+    </nav>
+
+    <div class="h-full w-screen bg-blue-50 flex items-center justify-center">
+      <div #alphaTab class="bg-white w-3/4 h-3/4 rounded-2xl overflow-auto"></div>
+    </div>
+</main>
