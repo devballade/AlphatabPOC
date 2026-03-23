@@ -31,7 +31,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         enablePlayer: true,
         enableCursor: true,
         enableUserInteraction: true,
-        soundFont: '/soundfont/sonivox.sf3'
+        soundFont: 'soundfont/sonivox.sf3'
       }
     } as alphaTab.Settings;
 
