@@ -25,7 +25,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const settings: alphaTab.Settings = {
       core: {
         file: 'https://www.alphatab.net/files/canon.gp',
-        fontDirectory: 'assets/font/'
+        fontDirectory: 'font/'
       },
       player: {
         enablePlayer: true,
