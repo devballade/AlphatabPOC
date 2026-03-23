@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, signal, viewChild } from '@angular/core';
 import * as alphaTab from '@coderline/alphatab';
+import { NotationElement } from '@coderline/alphatab';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   initAlhpaTab() {
     this.isLoading.set(true);
 
-    const settings: alphaTab.Settings = {
+    const settings = {
       core: {
         file: 'https://www.alphatab.net/files/canon.gp',
         fontDirectory: 'font/'
@@ -32,13 +33,18 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         enableCursor: true,
         enableUserInteraction: true,
         soundFont: 'soundfont/sonivox.sf3'
+      },
+      notation: {
+        elements: alphaTab.NotationElement.ChordDiagrams
       }
-    } as alphaTab.Settings;
+    } as unknown as alphaTab.Settings;
 
     if (this.alphaTabElement().nativeElement) {
       this.alphaTabApi = new alphaTab.AlphaTabApi(this.alphaTabElement().nativeElement, settings);
 
       if (this.alphaTabApi) {
+        this.alphaTabApi.settings.notation.elements.set(alphaTab.NotationElement.ChordDiagrams, true);
+
         this.alphaTabApi.scoreLoaded.on((score) => {
           this.tracks.set(score.tracks);
         });
@@ -48,10 +54,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         });
       }
     }
-  }
-
-  async playPause() {
-    this.alphaTabApi?.playPause();
   }
 
   async loadTab(event: Event) {
